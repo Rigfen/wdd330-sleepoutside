@@ -1,5 +1,6 @@
 import { setLocalStorage } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
+import getParam from "./utils.mjs";
 
 const dataSource = new ProductData("tents");
 
