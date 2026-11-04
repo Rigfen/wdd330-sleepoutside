@@ -27,3 +27,18 @@ export function getParam(param) {
 const urlParams = new URLSearchParams(queryString);
 const product = urlParams.get('product')
 }
+export function renderListWithTemplate(
+  templatefn,
+  parentElement,
+  list,
+  position = 'afterbegin',
+  clear = false
+) {
+const hstmStrings=list.map(templatefn);
+
+if (clear) {
+  parentElement.innerHTML = '';
+}
+
+parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+}
