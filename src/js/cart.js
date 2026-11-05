@@ -4,11 +4,12 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
 
   if (cartItems.length > 0) {
-    let total= 0;
+    let total = 0;
     cartItems.forEach((item) => {
       total += item.FinalPrice;
     });
-    document.querySelector(".cart-total").textContent = `Total: $${total.toFixed(2)}`;
+    document.querySelector(".cart-total").textContent =
+      `Total: $${total.toFixed(2)}`;
     document.querySelector(".cart-footer").classList.remove("hide");
   }
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
