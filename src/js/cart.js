@@ -38,16 +38,15 @@ function cartItemTemplate(item) {
 
 renderCartContents();
 
-const xBttns = document.querySelectorAll('.remove');
+document.querySelector('.product-list').addEventListener('click', (e) => {
+  if (e.target.classList.contains('remove')) {
+    const cItems = getLocalStorage('so-cart') || [];
 
-xBttns.forEach(button => {
-  const cItems = getLocalStorage('so-cart');
-
-  button.addEventListener('click', () => {
     const filteredItems = cItems.filter(item => {
-      return item.Id !== button.id;
+      return item.Id !== e.target.id;
     })
+
     setLocalStorage('so-cart', filteredItems);
     renderCartContents();
-  })
-})
+  }
+});
