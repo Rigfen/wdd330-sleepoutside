@@ -265,3 +265,55 @@ footer {
 .hide {
   display: none;
 }
+/* Product Comments */
+.product-comments {
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.product-comments h2 {
+  margin-bottom: 1rem;
+}
+
+#comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+#comment-form input,
+#comment-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font: inherit;
+}
+
+#comment-form button {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.comment-card {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.comment-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.comment-card p {
+  margin-bottom: 0.5rem;
+}
+
+.comment-card small {
+  color: #666;
+}
