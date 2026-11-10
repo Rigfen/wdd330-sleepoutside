@@ -21,3 +21,23 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+//Usable template
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(templateFn);
+  
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+//Function for the superscript for number of items on the backpack icon.
+export function updateCartCount() {
+  const cart = getLocalStorage("so-cart") || [];
+  const cartCount = document.querySelector(".cart-count");
+
+  if(cartCount) {
+    cartCount.textContent = cart.length;
+  }
+}
