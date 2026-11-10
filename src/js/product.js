@@ -1,7 +1,7 @@
 import { setLocalStorage } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 
-const dataSource = new ProductData("tents");
+const dataSource = new ProductData();
 
 // Get the product ID from the URL
 const params = new URLSearchParams(window.location.search);
@@ -28,8 +28,7 @@ function renderComments() {
   commentsList.innerHTML = "";
 
   if (comments.length === 0) {
-    commentsList.innerHTML =
-      "<p>No comments yet. Be the first to comment!</p>";
+    commentsList.innerHTML = "<p>No comments yet. Be the first to comment!</p>";
     return;
   }
 
@@ -98,16 +97,17 @@ async function renderProductDetails() {
       productSection.innerHTML = "<p>Sorry, product not found.</p>";
       return;
     }
+    
+    document.title = `Sleep Outside | ${product.Name}`;
 
     // Display product information
-    document.querySelector("#product-brand").textContent =
-      product.Brand.Name;
+    document.querySelector("#product-brand").textContent = product.Brand.Name;
 
     document.querySelector("#product-name").textContent =
       product.NameWithoutBrand;
 
     const image = document.querySelector("#product-image");
-    image.src = product.Image;
+    image.src = product.Images.PrimaryLarge;
     image.alt = product.Name;
 
     document.querySelector("#product-price").textContent =
@@ -120,21 +120,19 @@ async function renderProductDetails() {
       product.DescriptionHtmlSimple;
 
     // Add product to cart
-    document
-      .querySelector("#addToCart")
-      .addEventListener("click", () => {
-        const savedCart = JSON.parse(localStorage.getItem("so-cart"));
+    document.querySelector("#addToCart").addEventListener("click", () => {
+      const savedCart = JSON.parse(localStorage.getItem("so-cart"));
 
-        const cart = Array.isArray(savedCart)
-          ? savedCart
-          : savedCart
-            ? [savedCart]
-            : [];
+      const cart = Array.isArray(savedCart)
+        ? savedCart
+        : savedCart
+          ? [savedCart]
+          : [];
 
-        cart.push(product);
+      cart.push(product);
 
-        setLocalStorage("so-cart", cart);
-      });
+      setLocalStorage("so-cart", cart);
+    });
 
     // Display comments for this product
     renderComments();
@@ -152,4 +150,3 @@ async function renderProductDetails() {
 
 // Run the function
 renderProductDetails();
-
