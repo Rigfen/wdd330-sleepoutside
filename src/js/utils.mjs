@@ -13,13 +13,6 @@ export function getLocalStorage(key) {
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
-// get a parameter from the URL query string
-export function getParam(param) {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  return urlParams.get(param);
-}
-
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -28,18 +21,24 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
-// Render a list of items using a template function
+// getParam returns parameter fro the url when requested
+export function getParam(param) {
+  const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const product = urlParams.get('product')
+}
 export function renderListWithTemplate(
-  templateFn,
+  templatefn,
   parentElement,
   list,
-  position = "afterbegin",
-  clear = false,
+  position = 'afterbegin',
+  clear = false
 ) {
-  if (clear) {
-    parentElement.innerHTML = "";
-  }
+const hstmStrings=list.map(templatefn);
 
-  const htmlStrings = list.map(templateFn);
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+if (clear) {
+  parentElement.innerHTML = '';
+}
+
+parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
