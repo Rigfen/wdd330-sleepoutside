@@ -21,24 +21,23 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
-// getParam returns parameter fro the url when requested
-export function getParam(param) {
-  const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const product = urlParams.get('product')
-}
+// Render a list of items using a template function
 export function renderListWithTemplate(
-  templatefn,
+  templateFn,
   parentElement,
   list,
-  position = 'afterbegin',
-  clear = false
+  position = "afterbegin",
+  clear = false,
 ) {
-const hstmStrings=list.map(templatefn);
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
 
-if (clear) {
-  parentElement.innerHTML = '';
+  const htmlStrings = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
-
-parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+// Get a parameter from the current page's URL
+export function getParam(param) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(param);
 }
