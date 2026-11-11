@@ -21,23 +21,24 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
-// Render a list of items using a template function
+// getParam returns parameter fro the url when requested
+export function getParam(param) {
+  const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const product = urlParams.get('product')
+}
 export function renderListWithTemplate(
-  templateFn,
+  templatefn,
   parentElement,
   list,
-  position = "afterbegin",
-  clear = false,
+  position = 'afterbegin',
+  clear = false
 ) {
-  if (clear) {
-    parentElement.innerHTML = "";
-  }
+const hstmStrings=list.map(templatefn);
 
-  const htmlStrings = list.map(templateFn);
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+if (clear) {
+  parentElement.innerHTML = '';
 }
-// Get a parameter from the current page's URL
-export function getParam(param) {
-  const params = new URLSearchParams(window.location.search);
-  return params.get(param);
+
+parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
