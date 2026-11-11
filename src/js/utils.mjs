@@ -42,3 +42,22 @@ if (clear) {
 
 parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
+
+export async function loadHeaderFooter() {
+  const base = import.meta.env.BASE_URL;
+
+  const [headerResponse, footerResponse] = await Promise.all([
+    fetch(`${base}partials/header.html`),
+    fetch(`${base}partials/footer.html`),
+  ]);
+
+  if (!headerResponse.ok || !footerResponse.ok) {
+    throw new Error("Could not load header or footer.");
+  }
+
+  document.querySelector("#main-header").innerHTML =
+    await headerResponse.text();
+
+  document.querySelector("#main-footer").innerHTML =
+    await footerResponse.text();
+}
