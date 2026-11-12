@@ -21,43 +21,22 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
-// getParam returns parameter fro the url when requested
-export function getParam(param) {
-  const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const product = urlParams.get('product')
-}
+
 export function renderListWithTemplate(
-  templatefn,
+  templateFn,
   parentElement,
   list,
-  position = 'afterbegin',
+  position = "afterbegin",
   clear = false
 ) {
-const hstmStrings=list.map(templatefn);
-
-if (clear) {
-  parentElement.innerHTML = '';
-}
-
-parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
-}
-
-export async function loadHeaderFooter() {
-  const base = import.meta.env.BASE_URL;
-
-  const [headerResponse, footerResponse] = await Promise.all([
-    fetch(`${base}partials/header.html`),
-    fetch(`${base}partials/footer.html`),
-  ]);
-
-  if (!headerResponse.ok || !footerResponse.ok) {
-    throw new Error("Could not load header or footer.");
+  if (clear) {
+    parentElement.innerHTML = "";
   }
 
-  document.querySelector("#main-header").innerHTML =
-    await headerResponse.text();
+  const htmlStrings = list.map(templateFn);
 
-  document.querySelector("#main-footer").innerHTML =
-    await footerResponse.text();
+  parentElement.insertAdjacentHTML(
+    position,
+    htmlStrings.join("")
+  );
 }
