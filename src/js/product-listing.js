@@ -2,6 +2,7 @@ import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 import { getParam } from "./utils.mjs";
 
+
 const category = getParam("category") || "tents"; // default to "tents" if no category is provided
 const categoryNames = {
   tents: "Tents",
@@ -9,6 +10,7 @@ const categoryNames = {
   sleeping_bags: "Sleeping Bags",
   backpacks: "Backpacks",
 };
+
 
 // first create an instance of the ProductData class.
 const dataSource = new ProductData();
