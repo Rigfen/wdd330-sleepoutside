@@ -98,7 +98,7 @@ async function renderProductDetails() {
       productSection.innerHTML = "<p>Sorry, product not found.</p>";
       return;
     }
-    
+
     document.title = `Sleep Outside | ${product.Name}`;
 
     // Display product information

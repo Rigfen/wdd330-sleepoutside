@@ -1,4 +1,3 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import {
   getLocalStorage,
   setLocalStorage,
@@ -17,10 +16,9 @@ function renderCartContents() {
   document.querySelector(".cart-total").textContent =
     `Total: $${total.toFixed(2)}`;
 
-  document.querySelector(".cart-footer").classList.toggle(
-    "hide",
-    cartItems.length === 0
-  );
+  document
+    .querySelector(".cart-footer")
+    .classList.toggle("hide", cartItems.length === 0);
 
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
@@ -68,7 +66,7 @@ document.querySelector(".product-list").addEventListener("click", (event) => {
   const cartItems = getLocalStorage("so-cart") || [];
 
   const filteredItems = cartItems.filter(
-    (item) => item.Id !== removeButton.dataset.id
+    (item) => item.Id !== removeButton.dataset.id,
   );
 
   setLocalStorage("so-cart", filteredItems);
