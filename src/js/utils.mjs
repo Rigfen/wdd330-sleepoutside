@@ -22,21 +22,11 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-export function renderListWithTemplate(
-  templateFn,
-  parentElement,
-  list,
-  position = "afterbegin",
-  clear = false
-) {
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  const listStrings = list.map(templateFn);
   if (clear) {
     parentElement.innerHTML = "";
   }
 
-  const htmlStrings = list.map(templateFn);
-
-  parentElement.insertAdjacentHTML(
-    position,
-    htmlStrings.join("")
-  );
+  parentElement.listElement.insertAdjacentHTML(position, listStrings.join(""));
 }
