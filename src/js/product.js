@@ -1,5 +1,6 @@
 import { setLocalStorage } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
+import loadHeaderFooter from "./utils.mjs";
 
 const dataSource = new ProductData();
 
@@ -150,3 +151,4 @@ async function renderProductDetails() {
 
 // Run the function
 renderProductDetails();
+loadHeaderFooter().catch(console.error);

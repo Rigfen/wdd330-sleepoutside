@@ -49,28 +49,40 @@ export function renderListWithTemplate(
 export async function loadHeaderFooter() {
   const base = import.meta.env.BASE_URL;
 
-  const [headerResponse, footerResponse] = await Promise.all([
-    fetch(`${base}partials/header.html`),
-    fetch(`${base}partials/footer.html`),
-  ]);
-
-  if (!headerResponse.ok || !footerResponse.ok) {
-    throw new Error("Could not load header or footer.");
-  }
-
   const [headerHTML, footerHTML] = await Promise.all([
-    headerResponse.text(),
-    footerResponse.text(),
+    loadTemplate(`${base}partials/header.html`),
+    loadTemplate(`${base}partials/footer.html`),
   ]);
 
   const header = qs("#main-header");
   const footer = qs("#main-footer");
 
   if (header) {
-    header.innerHTML = headerHTML;
+    renderWithTemplate(headerHTML, header);
   }
 
   if (footer) {
-    footer.innerHTML = footerHTML;
+    renderWithTemplate(footerHTML, footer);
   }
+}
+export function renderWithTemplate(
+  template,
+  parentElement,
+  data,
+  callback
+) {
+  parentElement.innerHTML = template;
+
+  if (callback) {
+    callback(data);
+  }
+}
+
+export async function loadTemplate(path) {
+  const response= await fetch(path);
+
+  if (!response.ok) {
+    throw new Error(`Could not load template from ${path}`);
+  }
+  return await response.text();
 }
