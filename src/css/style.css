@@ -317,3 +317,50 @@ footer {
 .comment-card small {
   color: #666;
 }
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin: 0;
+  list-style: none;
+}
+
+.product-grid li {
+  flex: 1 1 140px;
+  max-width: 220px;
+}
+
+.product-grid a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: #eee;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-grid img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.product-grid h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.product-grid a:hover,
+.product-grid a:focus-visible {
+  background-color: #ddd;
+}
