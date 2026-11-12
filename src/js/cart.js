@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -30,9 +30,21 @@ function cartItemTemplate(item) {
   <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
   <p class='cart-card__quantity'>qty: 1</p>
   <p class='cart-card__price'>$${item.FinalPrice}</p>
-</li>`;
+  <span id='${item.Id}' class='remove'>X</span>
+  </li>`;
 
   return newItem;
 }
 
 renderCartContents();
+
+document.querySelector(".product-list").addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove")) {
+    const cItems = getLocalStorage("so-cart") || [];
+
+    const filteredItems = cItems.filter((item) => item.Id !== e.target.id);
+
+    setLocalStorage("so-cart", filteredItems);
+    renderCartContents();
+  }
+});
