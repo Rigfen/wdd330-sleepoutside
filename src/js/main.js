@@ -1,5 +1,3 @@
-import ProductList from "./ProductList.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
-const productList = new ProductList("Tents", dataSource, element);
-
-productList.init();
+loadHeaderFooter().catch(console.error);

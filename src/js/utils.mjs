@@ -1,33 +1,41 @@
-// wrapper for querySelector...returns matching element
+// Find an element.
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
-// retrieve data from localstorage
+// Retrieve data from localStorage.
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
-// save data to local storage
+
+// Save data to localStorage.
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
-// set a listener for both touchend and click
+
+// Listen for touch and click events.
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
     event.preventDefault();
     callback();
   });
+
   qs(selector).addEventListener("click", callback);
 }
-// Render a list of items using a template function
+
+// Return a parameter from the current URL.
+export function getParam(param) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(param);
+}
+
+// Render a list using a template function.
 export function renderListWithTemplate(
   templateFn,
   parentElement,
   list,
   position = "afterbegin",
-  clear = false,
+  clear = false
 ) {
   if (clear) {
     parentElement.innerHTML = "";
@@ -36,8 +44,33 @@ export function renderListWithTemplate(
   const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
-// Get a parameter from the current page's URL
-export function getParam(param) {
-  const params = new URLSearchParams(window.location.search);
-  return params.get(param);
+
+// Load the shared header and footer.
+export async function loadHeaderFooter() {
+  const base = import.meta.env.BASE_URL;
+
+  const [headerResponse, footerResponse] = await Promise.all([
+    fetch(`${base}partials/header.html`),
+    fetch(`${base}partials/footer.html`),
+  ]);
+
+  if (!headerResponse.ok || !footerResponse.ok) {
+    throw new Error("Could not load header or footer.");
+  }
+
+  const [headerHTML, footerHTML] = await Promise.all([
+    headerResponse.text(),
+    footerResponse.text(),
+  ]);
+
+  const header = qs("#main-header");
+  const footer = qs("#main-footer");
+
+  if (header) {
+    header.innerHTML = headerHTML;
+  }
+
+  if (footer) {
+    footer.innerHTML = footerHTML;
+  }
 }
