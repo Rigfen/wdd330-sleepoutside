@@ -38,15 +38,13 @@ function cartItemTemplate(item) {
 
 renderCartContents();
 
-document.querySelector('.product-list').addEventListener('click', (e) => {
-  if (e.target.classList.contains('remove')) {
-    const cItems = getLocalStorage('so-cart') || [];
+document.querySelector(".product-list").addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove")) {
+    const cItems = getLocalStorage("so-cart") || [];
 
-    const filteredItems = cItems.filter(item => {
-      return item.Id !== e.target.id;
-    })
+    const filteredItems = cItems.filter((item) => item.Id !== e.target.id);
 
-    setLocalStorage('so-cart', filteredItems);
+    setLocalStorage("so-cart", filteredItems);
     renderCartContents();
   }
 });
