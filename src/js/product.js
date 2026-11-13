@@ -129,7 +129,14 @@ async function renderProductDetails() {
           ? [savedCart]
           : [];
 
-      cart.push(product);
+      const duplicateItem = cart.find((item) => item.Id === product.Id);
+
+      if (duplicateItem) {
+        duplicateItem.quantity = (duplicateItem.quantity || 1) + 1;
+      } else {
+        product.quantity = 1;
+        cart.push(product);
+      }
 
       setLocalStorage("so-cart", cart);
     });

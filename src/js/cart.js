@@ -10,7 +10,7 @@ function renderCartContents() {
   let total = 0;
 
   cartItems.forEach((item) => {
-    total += Number(item.FinalPrice);
+    total += Number(item.FinalPrice) * (item.quantity || 1);
   });
 
   document.querySelector(".cart-total").textContent =
@@ -28,6 +28,8 @@ function cartItemTemplate(item) {
   // Support API products and older products already saved in the cart.
   const image = item.Images?.PrimaryMedium || item.Image;
   const productURL = `../product_pages/index.html?product=${item.Id}`;
+  const quantity = item.quantity || 1;
+
 
   return `<li class="cart-card divider">
     <a href="${productURL}" class="cart-card__image">
@@ -42,7 +44,7 @@ function cartItemTemplate(item) {
     </a>
 
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">qty: 1</p>
+    <p class="cart-card__quantity">qty: ${quantity}</p>
     <p class="cart-card__price">$${Number(item.FinalPrice).toFixed(2)}</p>
 
     <button
