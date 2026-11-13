@@ -6,7 +6,7 @@ const dataSource = new ProductData("tents");
 
 // Get the product ID from the URL
 const params = new URLSearchParams(window.location.search);
-const productId = getParam("product");
+const productId = params.get("product");
 const product = new ProductDetails(productId, dataSource);
 product.init();
 
