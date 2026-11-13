@@ -16,8 +16,7 @@ export default class ProductData {
   }
   
   async getData(category) {
-    const url = await fetch(`${baseURL}products/search/${category}`);
-    console.log("fetching from:", url);
+    const response = await fetch(`${baseURL}products/search/${category}`);
     const data = await convertToJson(response);
     return data.Result;
   }
