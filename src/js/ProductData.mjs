@@ -12,6 +12,7 @@ export default class ProductData {
 
   constructor() {
 
+  
   }
   
   async getData(category) {
