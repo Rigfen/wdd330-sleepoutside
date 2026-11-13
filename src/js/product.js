@@ -1,11 +1,14 @@
 import { setLocalStorage, loadHeaderFooter } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
+import ProductDetails from "./ProductDetails.mjs";
 
-const dataSource = new ProductData();
+const dataSource = new ProductData("tents");
 
 // Get the product ID from the URL
 const params = new URLSearchParams(window.location.search);
-const productId = params.get("product");
+const productId = getParam("product");
+const product = new ProductDetails(productId, dataSource);
+product.init();
 
 // Create a unique storage key for each product
 const commentsKey = `product-comments-${productId}`;
