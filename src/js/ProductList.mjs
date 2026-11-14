@@ -26,6 +26,11 @@ export default class ProductList {
     this.renderList(products);
   }
 
+  async initSearch(searchTerm) {
+    const products = await this.dataSource.searchProducts(searchTerm);
+    this.renderList(products);
+  }
+
   renderList(list) {
     renderListWithTemplate(
       productCardTemplate,

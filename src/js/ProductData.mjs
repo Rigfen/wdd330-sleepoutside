@@ -11,11 +11,26 @@ function convertToJson(response) {
 export default class ProductData {
   async getData(category) {
     const response = await fetch(
-      `${baseURL}products/search/${category}`
+      `${baseURL}products/search/${encodeURIComponent(category)}`
     );
 
     const data = await convertToJson(response);
     return data.Result;
+  }
+
+  async searchProducts(searchTerm) {
+    const response = await fetch(`${baseURL}products`);
+    const products = await convertToJson(response);
+
+    const search = searchTerm.toLowerCase();
+
+    return products.filter((product) => {
+      return (
+        product.Name.toLowerCase().includes(search) ||
+        product.NameWithoutBrand.toLowerCase().includes(search) ||
+        product.Brand.Name.toLowerCase().includes(search)
+      );
+    });
   }
 
   async findProductById(id) {

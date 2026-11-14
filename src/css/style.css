@@ -168,6 +168,57 @@ button {
   color: var(--dark-grey);
 }
 
+/* Product search form */
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  max-width: 420px;
+  margin: 0 1rem;
+}
+
+.search-form input {
+  width: 100%;
+  min-width: 0;
+  padding: 0.6rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.search-form button {
+  display: inline-block;
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Mobile search layout */
+@media screen and (max-width: 600px) {
+  header {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .logo {
+    width: auto;
+  }
+
+  .cart {
+    margin-left: auto;
+  }
+
+  .search-form {
+    order: 3;
+    flex-basis: 100%;
+    max-width: none;
+    margin: 0.5rem 0 0;
+  }
+}
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
