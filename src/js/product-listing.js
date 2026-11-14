@@ -25,11 +25,7 @@ if (searchTerm) {
 const dataSource = new ProductData();
 const listElement = document.querySelector(".product-list");
 
-const myList = new ProductList(
-  searchTerm || category,
-  dataSource,
-  listElement
-);
+const myList = new ProductList(searchTerm || category, dataSource, listElement);
 
 if (searchTerm) {
   myList.initSearch(searchTerm).catch(console.error);

@@ -415,3 +415,30 @@ footer {
 .product-grid a:focus-visible {
   background-color: #ddd;
 }
+/* Breadcrumbs navigation */
+.breadcrumbs {
+  padding: 1rem 1rem 0;
+  font-size: 0.9rem;
+  color: var(--dark-grey);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.breadcrumbs a {
+  color: var(--tertiary-color);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs span {
+  margin: 0 0.5rem;
+  color: var(--light-grey);
+}
+
+.breadcrumbs #current-product-name {
+  color: var(--dark-grey);
+  font-weight: bold;
+}
