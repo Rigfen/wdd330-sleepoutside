@@ -4,6 +4,7 @@ import { getParam, loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter().catch(console.error);
 
+const searchTerm = getParam("search");
 const category = getParam("category") || "tents";
 
 const categoryNames = {
@@ -13,11 +14,25 @@ const categoryNames = {
   hammocks: "Hammocks",
 };
 
-document.querySelector(".products h2").textContent =
-  `Top Products: ${categoryNames[category] || category}`;
+const heading = document.querySelector(".products h2");
+
+if (searchTerm) {
+  heading.textContent = `Search Results for: ${searchTerm}`;
+} else {
+  heading.textContent = `Top Products: ${categoryNames[category] || category}`;
+}
 
 const dataSource = new ProductData();
 const listElement = document.querySelector(".product-list");
 
-const myList = new ProductList(category, dataSource, listElement);
-myList.init().catch(console.error);
+const myList = new ProductList(
+  searchTerm || category,
+  dataSource,
+  listElement
+);
+
+if (searchTerm) {
+  myList.initSearch(searchTerm).catch(console.error);
+} else {
+  myList.init().catch(console.error);
+}
