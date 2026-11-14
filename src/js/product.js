@@ -1,4 +1,4 @@
-import { setLocalStorage, updateCartCount } from "./utils.mjs";
+import { setLocalStorage, updateCartCount, loadHeaderFooter } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 
 const dataSource = new ProductData("tents");
@@ -22,6 +22,8 @@ async function addToCartHandler(e) {
   const product = await dataSource.findProductById(e.target.dataset.id);
   addProductToCart(product);
 }
+
+await loadHeaderFooter();
 
 // add listener to Add to Cart button
 document
