@@ -30,7 +30,6 @@ function cartItemTemplate(item) {
   const productURL = `../product_pages/index.html?product=${item.Id}`;
   const quantity = item.quantity || 1;
 
-
   return `<li class="cart-card divider">
     <a href="${productURL}" class="cart-card__image">
       <img
