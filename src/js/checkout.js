@@ -8,6 +8,7 @@ const myCheckout = new CheckoutProcess();
 
 // Calculate subtotal when page loads
 myCheckout.calculateSubtotal();
+myCheckout.calculateOrderTotal();
 
 // Calculate totals after user enters zip code
 document.querySelector("#zip").addEventListener("change", () => {
