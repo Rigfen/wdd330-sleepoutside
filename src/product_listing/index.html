@@ -14,6 +14,16 @@
     <main>
         <section class="products">
             <h2 class="title">Top Products</h2>
+
+            <label for="product-sort">Sort By:</label>
+            <select id="product-sort" name="product-sort">
+                <option value="">Sort</option>
+                <option value="NameA-Z">Name (A-Z)</option>
+                <option value="NameZ-A">Name (Z-A)</option>
+                <option value="PriceASC">Price (Low-High)</option>
+                <option value="PriceDESC">Price (High-Low)</option>
+            </select>
+
             <ul class="product-list"></ul>
         </section>
     </main>

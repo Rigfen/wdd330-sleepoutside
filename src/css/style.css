@@ -168,6 +168,13 @@ button {
   padding: 1rem;
 }
 
+/*Sort Button*/
+.products select {
+  padding: 3px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
 .product-list {
   display: flex;
   flex-flow: row wrap;
