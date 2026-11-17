@@ -442,3 +442,146 @@ footer {
   color: var(--dark-grey);
   font-weight: bold;
 }
+
+/* Checkout Button */
+.checkout {
+  display: inline-block;
+  padding: 14px 30px;
+  margin-top: 15px;
+
+  background-color: #2d6a4f;
+  color: white;
+
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Hover Animation */
+.checkout:hover {
+  background-color: #40916c;
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Click Animation */
+.checkout:active {
+  transform: scale(0.96);
+}
+
+/* Keyboard Focus */
+.checkout:focus-visible {
+  outline: 3px solid #1b4332;
+  outline-offset: 3px;
+}
+
+/* Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .checkout {
+    transition: none;
+  }
+}
+
+/* Checkout Page */
+.checkout-page {
+  max-width: 750px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.checkout-page h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#checkoutForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#checkoutForm fieldset {
+  border: 1px solid var(--light-grey);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+#checkoutForm legend {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
+}
+
+#checkoutForm label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+#checkoutForm input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+#checkoutForm input:focus {
+  outline: 2px solid var(--secondary-color);
+}
+
+.order-summary {
+  background-color: #f6f6f6;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.order-summary h2 {
+  margin-bottom: 1rem;
+}
+
+.order-summary h3 {
+  border-top: 2px solid #ccc;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Place Order Button */
+#checkoutForm .checkout-button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin: 0;
+  background-color: #2d6a4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+}
+
+#checkoutForm .checkout-button:hover {
+  background-color: #40916c;
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #checkoutForm .checkout-button {
+    transition: none;
+  }
+}
