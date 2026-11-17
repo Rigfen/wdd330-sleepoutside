@@ -22,10 +22,17 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
+export function getParam(param) {
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  const product = params.get(param);
+  return product;
+}
+
 //Usable template
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
   const htmlStrings = list.map(templateFn);
-  
+
   if (clear) {
     parentElement.innerHTML = "";
   }
@@ -63,7 +70,7 @@ export function updateCartCount() {
   const cart = getLocalStorage("so-cart") || [];
   const cartCount = document.querySelector(".cart-count");
 
-  if(cartCount) {
+  if (cartCount) {
     cartCount.textContent = cart.length;
   }
 }
