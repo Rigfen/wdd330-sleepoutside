@@ -96,10 +96,11 @@
 
             <label for="cardNumber">Credit Card Number</label>
             <input
-              type="text"
+              type="number"
               id="cardNumber"
               name="cardNumber"
               inputmode="numeric"
+              maxlength="16"
               autocomplete="cc-number"
               required
             />
@@ -110,15 +111,18 @@
               id="expiration"
               name="expiration"
               placeholder="MM/YY"
+              maxlength="5"
+              inputmode="numeric"
               autocomplete="cc-exp"
               required
             />
 
             <label for="securityCode">Security Code</label>
             <input
-              type="text"
+              type="number"
               id="securityCode"
               name="securityCode"
+              placeholder="🟢🟢🟢"
               inputmode="numeric"
               autocomplete="cc-csc"
               required

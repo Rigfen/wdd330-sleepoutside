@@ -1,8 +1,11 @@
 
+import ExternalServices from "./ExternalServices.mjs";
+
 export default class CheckoutProcess {
   constructor() {
     this.cart = JSON.parse(localStorage.getItem("so-cart")) || [];
     this.subtotal = 0;
+    this.services = new ExternalServices();
   }
 
   // Calculate and display the subtotal
@@ -18,7 +21,7 @@ export default class CheckoutProcess {
       `$${this.subtotal.toFixed(2)}`;
   }
 
-  // Calculate and display tax, shipping, and order total
+  // Calculate tax, shipping, and order total
   calculateOrderTotal() {
     const tax = this.subtotal * 0.06;
     const shipping = this.subtotal > 0 ? 10 : 0;
@@ -33,4 +36,36 @@ export default class CheckoutProcess {
     document.querySelector("#orderTotal").textContent =
       `$${orderTotal.toFixed(2)}`;
   }
+
+  
+
+async checkout(orderPayload) {
+  try {
+    const result = await this.services.checkout(orderPayload);
+
+    console.log("Checkout successful:", result);
+
+    // Only clear the cart after the server accepts the order
+    localStorage.removeItem("so-cart");
+    this.cart = [];
+
+    // Take the customer to the success page
+    window.location.href = "/checkout/success.html";
+
+    return result;
+  } catch (err) {
+    console.error("Checkout failed:", err);
+
+    const details = err.message;
+
+    alert(
+      typeof details === "string"
+        ? details
+        : JSON.stringify(details)
+    );
+
+    return null;
+  }
+}
+
 }
