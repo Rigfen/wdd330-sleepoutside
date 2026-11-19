@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage, updateCartCount } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, updateCartCount, alertMessage } from "./utils.mjs";
 
 export default class ProductDetails {
 
@@ -21,22 +21,9 @@ export default class ProductDetails {
         cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems);
         updateCartCount();
+
+        alertMessage("Product added to cart!");
     }
-
-    // addProductToCart() {
-    //     const savedCart = JSON.parse(localStorage.getItem("so-cart"));
-
-    //     let cart = [];
-    //     if (Array.isArray(savedCart)) {
-    //         cart = savedCart;
-    //     } else if (savedCart) {
-    //         cart = [savedCart];
-    //     }
-
-    //     cart.push(product);
-    //     setLocalStorage("so-cart", cart);
-    //     updateCartCount();
-    // }
 
     renderProductDetails() {
         productDetailsTemplate(this.product);

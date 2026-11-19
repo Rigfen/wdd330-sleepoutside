@@ -1,4 +1,4 @@
-import { getLocalStorage, formDataToJSON } from "./utils.mjs";
+import { getLocalStorage, formDataToJSON, alertMessage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 export default class CheckoutProcess {
@@ -88,10 +88,27 @@ export default class CheckoutProcess {
         order.code = order.cvv;
         delete order.cvv;
 
-        // Send the order to the server
-        const externalServices = new ExternalServices();
-        const response = await externalServices.checkout(order);
+        try {
+            // Send the order to the server
+            const externalServices = new ExternalServices();
+            const response = await externalServices.checkout(order);
 
-        return response;
+            localStorage.removeItem(this.key);
+            window.location.href = "/checkout/success.html";
+
+            return response;
+        } catch (err) {
+            console.log(err);
+            alertMessage(err.message.message);
+        }
+        
+        document.querySelector('#checkoutSubmit').addEventListener('click', (e) => {
+            e.preventDefault();
+            const form = document.forms[0];
+            const validity = form.checkValidity();
+            form.reportValidity();
+            if (validity)
+                myCheckout.checkout();
+        });
     }
 }
