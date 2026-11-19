@@ -13,10 +13,26 @@
 </head>
 
 <body>
-  <header class="divider" id="main-header">
+  <header class="divider" id="main-header"></header>
 
     <main class="divider checkout">
       <h2>Review & Place your Order</h2>
+      <fieldset class="checkout-summary">
+        <legend>Order Summary</legend>
+      
+        <div class="order__summary">
+          <div>Items</div>
+          <div id="numberItems"></div>
+          <div>Subtotal</div>
+          <div id="cartTotal"></div>
+          <div>Tax</div>
+          <div id="tax"></div>
+          <div>Shipping Estimate</div>
+          <div id="shipping"></div>
+          <div>Order Total</div>
+          <div id="total"></div>
+        </div>
+      </fieldset>
       <section class="checkout-form">
         <form name="checkout">
           <fieldset>
@@ -49,28 +65,13 @@
               <input type="text" name="cvv" id="cvv" required />
             </div>
           </fieldset>
-          <fieldset class="checkout-summary">
-            <legend>Order Summary</legend>
-
-            <div class="order__summary">
-              <div>Items</div>
-              <div id="numberItems"></div>
-              <div>Subtotal</div>
-              <div id="cartTotal"></div>
-              <div>Shipping</div>
-              <div>Tax</div>
-              <div id="tax"></div>
-              <div id="shipping"></div>
-              <div>Total</div>
-              <div id="total"></div>
-            </div>
-          </fieldset>
           <button type="submit" id="checkoutSubmit">Checkout</button>
         </form>
       </section>
     </main>
 
     <footer id="main-footer"></footer>
+    <script src="../js/checkout.js" type="module"></script>
 </body>
 
 </html>
