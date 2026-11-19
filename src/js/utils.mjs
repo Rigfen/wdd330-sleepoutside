@@ -60,6 +60,8 @@ export async function loadHeaderFooter() {
   if (header) {
     renderWithTemplate(headerHTML, header);
 
+    updateCartCount();
+
     const searchForm = header.querySelector("#search-form");
 
     if (searchForm) {
@@ -101,4 +103,19 @@ export async function loadTemplate(path) {
     throw new Error(`Could not load template from ${path}`);
   }
   return await response.text();
+}
+
+export function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("so-cart")) || [];
+
+  const count = cart.reduce((total, item) => {
+    return total + (Number(item.quantity ?? 1) || 0);
+  }, 0);
+
+  const cartCount = document.querySelector("#cart-count");
+
+  if (cartCount) {
+    cartCount.textContent = count;
+    cartCount.style.display = count > 0 ? "inline-block" : "none";
+  }
 }

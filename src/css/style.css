@@ -613,3 +613,38 @@ footer {
   display: inline-block;
   margin-top: 2rem;
 }
+
+.cart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cart-link svg {
+  display: block;
+}
+
+#cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+
+  min-width: 22px;
+  height: 22px;
+  padding: 0 4px;
+
+  background-color: #d62828;
+  color: white;
+
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  top:-8px;
+  right:-10px;
+}
