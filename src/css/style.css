@@ -645,13 +645,12 @@ footer {
   justify-content: center;
 
   box-sizing: border-box;
-  top:-8px;
-  right:-10px;
+  top: -8px;
+  right: -10px;
 }
 
 /* Main page modal */
 #visitDialog {
   margin: auto;
   text-align: center;
-
 }
