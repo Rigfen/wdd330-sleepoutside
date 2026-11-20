@@ -19,15 +19,13 @@ document.querySelector("#zip").addEventListener("change", () => {
 
 document
   .querySelector("#checkoutForm")
-  .addEventListener("submit", async (event) => {
-    event.preventDefault();
+  .addEventListener("submit", (e) => { 
+    e.preventDefault();
 
-    const myForm = event.currentTarget;
-
-    if (!myForm.checkValidity()) {
-      myForm.reportValidity();
-      return;
-    }
+    const myForm = document.forms[0];
+    const check_status = myForm.checkValidity();
+    myForm.reportValidity();
+    
 
     // Collect information from the checkout form
     const formData = new FormData(myForm);
@@ -52,5 +50,5 @@ document
     };
 
     // Send the order to the checkout process
-    await myCheckout.checkout(orderPayload);
+    myCheckout.checkout(orderPayload);
   });
