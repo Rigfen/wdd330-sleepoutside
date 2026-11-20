@@ -79,7 +79,6 @@
 
             <label for="street">Street Address</label>
             <input type="text" id="street" name="street" required />
-
             <label for="city">City</label>
             <input type="text" id="city" name="city" required />
 
@@ -93,42 +92,17 @@
           <!-- Payment Information -->
           <fieldset>
             <legend>Payment Information</legend>
-
             <label for="cardNumber">Credit Card Number</label>
-            <input
-              type="number"
-              id="cardNumber"
-              name="cardNumber"
-              inputmode="numeric"
-              maxlength="16"
-              autocomplete="cc-number"
-              required
-            />
-
+            <input type="text" id="cardNumber" name="cardNumber" inputmode="numeric" pattern="[0-9]{16}" minlength="16"
+              maxlength="16" title="Enter a 16-digit card number." autocomplete="cc-number" required />
             <label for="expiration">Expiration Date</label>
-            <input
-              type="text"
-              id="expiration"
-              name="expiration"
-              placeholder="MM/YY"
-              maxlength="5"
-              inputmode="numeric"
-              autocomplete="cc-exp"
-              required
-            />
-
+            <input type="text" id="expiration" name="expiration" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])/[0-9]{2}"
+              minlength="5" maxlength="5" title="Enter a valid expiration date in MM/YY format." inputmode="numeric"
+              autocomplete="cc-exp" required />
             <label for="securityCode">Security Code</label>
-            <input
-              type="number"
-              id="securityCode"
-              name="securityCode"
-              placeholder="🟢🟢🟢"
-              inputmode="numeric"
-              autocomplete="cc-csc"
-              required
-            />
+            <input type="text" id="securityCode" name="securityCode" placeholder="123" inputmode="numeric" pattern="[0-9]{3,4}"
+              minlength="3" maxlength="4" title="Enter a 3 or 4 digit security code." autocomplete="cc-csc" required />
           </fieldset>
-
           <!-- Order Summary -->
           <section class="order-summary">
             <h2>Order Summary</h2>
