@@ -59,6 +59,17 @@ export async function loadHeaderFooter() {
   
   if (header) {
     renderWithTemplate(headerHTML, header);
+    // Set navigation links using the correct project base path.
+    const homeLink = header.querySelector("[data-nav='home']");
+    const cartLink = header.querySelector("[data-nav='cart']");
+
+    if (homeLink) {
+      homeLink.href = `${base}index.html`;
+    }
+
+    if (cartLink) {
+      cartLink.href = `${base}cart/index.html`;
+    }
 
     updateCartCount();
 
@@ -97,7 +108,7 @@ export function renderWithTemplate(
 }
 
 export async function loadTemplate(path) {
-  const response= await fetch(path);
+  const response = await fetch(path);
 
   if (!response.ok) {
     throw new Error(`Could not load template from ${path}`);
@@ -108,10 +119,10 @@ export async function loadTemplate(path) {
 export function updateCartCount() {
   const cart = JSON.parse(localStorage.getItem("so-cart")) || [];
 
-  const count = cart.reduce((total, item) => {
-    return total + (Number(item.quantity ?? 1) || 0);
-  }, 0);
-
+  const count = cart.reduce(
+    (total, item) => total + (Number(item.quantity ?? 1) || 0),
+    0
+  );
   const cartCount = document.querySelector("#cart-count");
 
   if (cartCount) {
