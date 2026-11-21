@@ -654,3 +654,35 @@ footer {
   margin: auto;
   text-align: center;
 }
+
+/* Product Color Variants */
+.product-colors {
+  margin: 1rem 0;
+}
+
+.product-colors__label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--dark-grey);
+}
+
+.color-options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.color-option {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--light-grey);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.color-option:hover {
+  transform: scale(1.15);
+  border-color: var(--dark-grey);
+}
