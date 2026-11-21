@@ -53,7 +53,17 @@ export default class ProductDetails {
 
       <p class="product-card__price">$${product.FinalPrice}</p>
 
-      <p class="product__color">${product.Colors[0].ColorName}</p>
+      <div class="product-colors">
+        <p class="product-colors__label">Colores disponibles:</p>
+        <div class="color-options">
+          ${product.Colors.map(color => `
+            <div class="color-option" title="${color.ColorName}" 
+                style="background-color: ${color.ColorHex || '#cccccc'};">
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
 
       <p class="product__description">${product.DescriptionHtmlSimple}</p>
 
