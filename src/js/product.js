@@ -3,6 +3,16 @@ import ProductData from "./ExternalServices.mjs";
 
 const dataSource = new ProductData();
 
+// Get saved wish list products
+function getWishlist() {
+  try {
+    return JSON.parse(localStorage.getItem("so-wishlist")) || [];
+  } catch (error) {
+    console.error("Could not load wish list:", error);
+    return [];
+  }
+}
+
 // Get the product ID from the URL
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("product");
@@ -140,6 +150,43 @@ async function renderProductDetails() {
 
       setLocalStorage("so-cart", cart);
     });
+    // Add or remove product from wish list
+    const wishlistButton = document.querySelector("#addToWishlist");
+
+    const updateWishlistButton = () => {
+      const wishlist = getWishlist();
+
+      const isSaved = wishlist.some(
+        (item) => String(item.Id) === String(product.Id)
+      );
+
+      wishlistButton.textContent = isSaved
+        ? "Remove from Wish List ♥"
+        : "Add to Wish List ♡";
+    };
+
+    wishlistButton.addEventListener("click", () => {
+      let wishlist = getWishlist();
+
+      const isSaved = wishlist.some(
+        (item) => String(item.Id) === String(product.Id)
+      );
+
+      if (isSaved) {
+        wishlist = wishlist.filter(
+          (item) => String(item.Id) !== String(product.Id)
+        );
+      } else {
+        wishlist.push(product);
+      }
+
+      setLocalStorage("so-wishlist", wishlist);
+
+      updateWishlistButton();
+    });
+
+    // Display the correct button text when the page loads
+    updateWishlistButton();
 
     // Display comments for this product
     renderComments();
