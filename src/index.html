@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="/css/style.css" />
     <script src="js/main.js" type="module"></script>
+    <script src="js/newsletter.js" type="module"></script>
   </head>
 
   <body>
@@ -75,6 +76,17 @@
         </ul>
       </section>
     </main>
+    <section class="newsletter">
+      <div class="newsletter-content">
+        <h2>Stay Updated</h2>
+        <p>Sign up for our newsletter for the latest deals and outdoor tips!</p>
+        <form id="newsletter-form" class="newsletter-form">
+          <input type="email" id="email-input" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <p id="success-message" class="success-message" style="display: none;">Thanks for subscribing! 🎉</p>
+      </div>
+    </section>
 
     <footer id="main-footer"></footer>
   </body>
