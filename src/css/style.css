@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -316,6 +316,7 @@ footer {
 .hide {
   display: none;
 }
+
 /* Product Comments */
 .product-comments {
   margin: 2rem auto;
@@ -415,6 +416,7 @@ footer {
 .product-grid a:focus-visible {
   background-color: #ddd;
 }
+
 /* Breadcrumbs navigation */
 .breadcrumbs {
   padding: 1rem 1rem 0;
@@ -653,4 +655,60 @@ footer {
 #visitDialog {
   margin: auto;
   text-align: center;
+}
+
+/* Newsletter Section */
+.newsletter {
+  background: var(--secondary-color);
+  color: white;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.newsletter-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletter h2 {
+  margin-bottom: 0.5rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.newsletter-form input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.newsletter-form button {
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-color);
+  color: var(--dark-grey);
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.newsletter-form button:hover {
+  background: #d89658;
+}
+
+.success-message {
+  margin-top: 1rem;
+  font-weight: bold;
 }
