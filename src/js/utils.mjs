@@ -119,3 +119,28 @@ export function updateCartCount() {
     cartCount.style.display = count > 0 ? "inline-block" : "none";
   }
 }
+
+// Display an alert message at the top of the main element.
+export function alertMessage(message, scroll = true) {
+  const main = document.querySelector("main");
+
+  if (!main) return;
+
+  // Remove any previous alert message.
+  const existingAlert = main.querySelector(".alert");
+  if (existingAlert) {
+    existingAlert.remove();
+  }
+
+  // Create and display the new alert.
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.textContent = message;
+
+  main.prepend(alert);
+
+  // Scroll to the top when requested.
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
+}

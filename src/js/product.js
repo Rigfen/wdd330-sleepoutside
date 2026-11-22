@@ -1,4 +1,8 @@
-import { setLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import {
+  setLocalStorage,
+  loadHeaderFooter,
+  alertMessage,
+} from "./utils.mjs";
 import ProductData from "./ExternalServices.mjs";
 
 const dataSource = new ProductData();
@@ -139,6 +143,7 @@ async function renderProductDetails() {
       }
 
       setLocalStorage("so-cart", cart);
+      alertMessage(`${product.Name} added to cart!`);
     });
 
     // Display comments for this product

@@ -95,15 +95,8 @@
             <legend>Payment Information</legend>
 
             <label for="cardNumber">Credit Card Number</label>
-            <input
-              type="number"
-              id="cardNumber"
-              name="cardNumber"
-              inputmode="numeric"
-              maxlength="16"
-              autocomplete="cc-number"
-              required
-            />
+            <input type="text" id="cardNumber" name="cardNumber" inputmode="numeric" maxlength="16" minlength="16"
+              autocomplete="cc-number" required />
 
             <label for="expiration">Expiration Date</label>
             <input
@@ -119,11 +112,13 @@
 
             <label for="securityCode">Security Code</label>
             <input
-              type="number"
+              type="text"
               id="securityCode"
               name="securityCode"
-              placeholder="🟢🟢🟢"
+              placeholder="3-digit security code"
               inputmode="numeric"
+              maxlength="4"
+              minlength="3"
               autocomplete="cc-csc"
               required
             />

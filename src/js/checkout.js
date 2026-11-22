@@ -1,3 +1,4 @@
+
 import { loadHeaderFooter } from "./utils.mjs";
 import CheckoutProcess from "./CheckoutProcess.mjs";
 
@@ -6,17 +7,16 @@ loadHeaderFooter().catch(console.error);
 // Create checkout process
 const myCheckout = new CheckoutProcess();
 
-// Calculate subtotal when page loads
+// Calculate totals when the page loads
 myCheckout.calculateSubtotal();
 myCheckout.calculateOrderTotal();
 
-// Calculate totals after user enters zip code
+// Recalculate totals when the ZIP code changes
 document.querySelector("#zip").addEventListener("change", () => {
   myCheckout.calculateOrderTotal();
 });
 
-// Prevent form from submitting for now
-
+// Handle checkout form submission
 document
   .querySelector("#checkoutForm")
   .addEventListener("submit", async (event) => {
@@ -24,14 +24,16 @@ document
 
     const myForm = event.currentTarget;
 
+    // Check form validation
     if (!myForm.checkValidity()) {
       myForm.reportValidity();
       return;
     }
 
-    // Collect information from the checkout form
+    // Collect information from the form
     const formData = new FormData(myForm);
 
+    // Prepare the order information for the server
     const orderPayload = {
       orderDate: new Date().toISOString(),
       fname: formData.get("fname"),
@@ -42,15 +44,17 @@ document
       zip: formData.get("zip"),
       cardNumber: formData.get("cardNumber"),
       expiration: formData.get("expiration"),
-      securityCode: formData.get("securityCode"),
-      order: myCheckout.cart.map((item) => ({
-        id: item.Id,
-        name: item.Name,
-        price: item.FinalPrice,
-        quantity: item.quantity ?? 1,
-      })),
+      code: formData.get("securityCode"),
+
+      // Package cart items for the server
+      items: myCheckout.packageItems(myCheckout.cart),
+
+      // Include order calculations
+      orderTotal: myCheckout.orderTotal,
+      shipping: myCheckout.shipping,
+      tax: myCheckout.tax,
     };
 
-    // Send the order to the checkout process
+    // Submit the order
     await myCheckout.checkout(orderPayload);
   });
