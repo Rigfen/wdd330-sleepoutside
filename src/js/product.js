@@ -2,6 +2,7 @@ import {
   setLocalStorage,
   loadHeaderFooter,
   alertMessage,
+  updateCartCount,
 } from "./utils.mjs";
 import ProductData from "./ExternalServices.mjs";
 
