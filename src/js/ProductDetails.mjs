@@ -57,7 +57,9 @@ function productDetailsTemplate(product) {
     product.SelectedColor = product.Colors[0];
     product.Colors.forEach((color) => {
         const colorImage = document.createElement("img");
-        colorImage.classList.add("selected");
+        if (color === product.SelectedColor) {
+            colorImage.classList.add("selected");
+        }
 
         colorImage.src = color.ColorChipImageSrc;
         colorImage.alt = color.ColorName;
