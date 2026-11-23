@@ -50,7 +50,7 @@ async checkout(orderPayload) {
     this.cart = [];
 
     // Take the customer to the success page
-    window.location.href = "/checkout/success.html";
+    window.location.href = `${import.meta.env.BASE_URL}checkout/success.html`;
 
     return result;
   } catch (err) {
