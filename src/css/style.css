@@ -654,3 +654,25 @@ footer {
   margin: auto;
   text-align: center;
 }
+
+.success {
+  padding: 1rem;
+  text-align: center;
+
+  & h2 {
+    color: var(--tertiary-color)
+  }
+}
+
+.alert {
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--tertiary-color);
+
+  & span {
+    margin-left: auto;
+    padding-right: .5rem;
+    font-weight: bold;
+}
+}

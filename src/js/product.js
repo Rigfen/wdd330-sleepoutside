@@ -1,4 +1,4 @@
-import { setLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { setLocalStorage, loadHeaderFooter, alertMessage } from "./utils.mjs";
 import ProductData from "./ExternalServices.mjs";
 
 const dataSource = new ProductData();
@@ -149,6 +149,7 @@ async function renderProductDetails() {
       }
 
       setLocalStorage("so-cart", cart);
+      alertMessage(`${product.NameWithoutBrand} was successfully added to the cart!`)
     });
     // Add or remove product from wish list
     const wishlistButton = document.querySelector("#addToWishlist");

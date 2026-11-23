@@ -1,6 +1,6 @@
 
 import ExternalServices from "./ExternalServices.mjs";
-
+import { alertMessage, removeAlerts, setLocalStorage } from "./utils.mjs";
 export default class CheckoutProcess {
   constructor() {
     this.cart = JSON.parse(localStorage.getItem("so-cart")) || [];
@@ -39,33 +39,17 @@ export default class CheckoutProcess {
 
   
 
-async checkout(orderPayload) {
+async checkout(payload) {
+
   try {
-    const result = await this.services.checkout(orderPayload);
-
-    console.log("Checkout successful:", result);
-
-    // Only clear the cart after the server accepts the order
-    localStorage.removeItem("so-cart");
-    this.cart = [];
-
-    // Take the customer to the success page
-    window.location.href = "/checkout/success.html";
-
-    return result;
-  } catch (err) {
-    console.error("Checkout failed:", err);
-
-    const details = err.message;
-
-    alert(
-      typeof details === "string"
-        ? details
-        : JSON.stringify(details)
-    );
-
-    return null;
+    await this.services.checkout(payload);
+    setLocalStorage("so-cart", []);
+    window.location.assign("/checkout/success.html");
+  } catch (error) {
+    removeAlerts();
+    const errMessage = error.message && typeof error.message === "object" ? Object.values(error.message) : [error.message || "Unable to place your order."];
+    errMessage.forEach((message) => alertMessage(message));
   }
-}
 
+  }
 }
