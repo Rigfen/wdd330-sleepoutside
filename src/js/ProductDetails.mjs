@@ -1,4 +1,19 @@
 import { setLocalStorage } from "./utils.mjs";
+
+// returns discount info only when the final price is below the suggested retail price
+function getDiscount(product) {
+  const retail = Number(product.SuggestedRetailPrice);
+  const final = Number(product.FinalPrice);
+
+  if (!retail || !final || retail <= final) {
+    return null;
+  }
+
+  return {
+    retail: retail.toFixed(2),
+    percent: Math.round(((retail - final) / retail) * 100),
+  };
+}
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
@@ -35,6 +50,7 @@ export default class ProductDetails {
 
   renderProductDetails() {
     const product = this.product;
+    const discount = getDiscount(product);
 
     // update the browser tab title for this product
     document.title = `Sleep Outside | ${product.Name}`;
@@ -45,13 +61,27 @@ export default class ProductDetails {
 
       <h2 class="divider">${product.NameWithoutBrand}</h2>
 
-      <img
-        class="divider"
-        src="${product.Image}"
-        alt="${product.Name}"
-      />
+      <div class="product-image-wrapper">
+        <img
+          class="divider"
+          src="${product.Image}"
+          alt="${product.Name}"
+        />
+        ${
+          discount
+            ? `<span class="discount-badge">${discount.percent}% OFF</span>`
+            : ""
+        }
+      </div>
 
-      <p class="product-card__price">$${product.FinalPrice}</p>
+      <p class="product-card__price">
+        ${
+          discount
+            ? `<span class="product__original-price">$${discount.retail}</span>
+               <strong class="product__final-price">$${product.FinalPrice}</strong>`
+            : `$${product.FinalPrice}`
+        }
+      </p>
 
       <p class="product__color">${product.Colors[0].ColorName}</p>
 

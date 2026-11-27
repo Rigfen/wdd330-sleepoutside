@@ -203,6 +203,34 @@ button {
   width: 100%;
 }
 
+/* Discount styles */
+.product-image-wrapper {
+  position: relative;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: var(--tertiary-color);
+  color: white;
+  font-weight: bold;
+  font-size: var(--small-font);
+  padding: 0.4em 0.8em;
+  border-radius: 4px;
+}
+
+.product__original-price {
+  text-decoration: line-through;
+  color: gray;
+  margin-right: 0.5em;
+}
+
+.product__final-price {
+  font-size: var(--large-font);
+  color: var(--secondary-color);
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
